@@ -7,8 +7,9 @@ class User(Base):
     __tablename__ = "users"
 
     user_id = Column(UUID(as_uuid=True), primary_key=True, default=uuid4)
+    username = Column(String, unique=True, nullable=False)  
     email = Column(String, unique=True, nullable=False)
-    password = Column(String, nullable=False)
+    password_hash = Column(String, nullable=False)
     role = Column(String, default="buyer")
     is_verified = Column(Boolean, default=False)
     created_at = Column(DateTime(timezone=True), default=func.now())

@@ -5,7 +5,7 @@ from app.core.security import hash_password
 
 def create_user(db: Session, user: UserCreate):
     hashed_pwd = hash_password(user.password)
-    db_user = User(username=user.username, email=user.email, password=hashed_pwd)
+    db_user = User(username=user.username, email=user.email, password_hash=hashed_pwd)
     db.add(db_user)
     db.commit()
     db.refresh(db_user)
